@@ -1,0 +1,18 @@
+{
+    "dynamic": "true",
+    "properties": {
+        "DataId": {"type": "integer"},
+        "MeterCode": {"type": "integer"},
+        "TransactionId": {"type": "integer"},
+        "TransactionDateTime": {"type": "string"},
+        "Amount": {"type": "float"},
+        "UserNumber": {"type": "integer"},
+        "PaymentMean": {"type": "string"},
+        "PaidDuration": {"type": "integer"},
+        "ElementKey": {"type": "integer"},
+        "TransactionYear": {"type": "integer"},
+        "TransactionMonth": {"type": "integer"},
+        "Vendor": {"type": "string"}
+    }
+}
+

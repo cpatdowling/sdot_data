@@ -1,0 +1,9 @@
+import os
+
+datapath = "/home/chase/projects/sdot_data/data/parking_data"
+
+infiles = os.listdir(datapath)
+
+with open("parallel_bulk.sh", 'w') as f:
+    for fname in infiles:
+        f.write("python /home/chase/projects/sdot_data/src/bulk_load.py " + fname + "\n")
