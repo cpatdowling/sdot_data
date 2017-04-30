@@ -1,2 +1,3 @@
 *.pyc
 data/*
+src/email_test.py
