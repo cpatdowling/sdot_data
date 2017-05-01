@@ -28,26 +28,6 @@ headerconfig = {
 es = Elasticsearch(hosts = [ES_HOST])
 
 
-"""
-#refresh index
-if es.indices.exists(INDEX_NAME):
-    print("deleting '%s' index..." % (INDEX_NAME))
-    res = es.indices.delete(index = INDEX_NAME)
-    print(" response: '%s'" % (res))
-
-#running locally, so use one shard and no replicas
-request_body = {
-    "settings" : {
-        "number_of_shards": 1,
-        "number_of_replicas": 0
-    }
-}
-
-print("creating '%s' index..." % (INDEX_NAME))
-res = es.indices.create(index = INDEX_NAME, body = request_body)
-print(" response: '%s'" % (res))
-"""
-
 datapath = "/home/chase/projects/sdot_data/data/parking_data"
 fname = sys.argv[1]
 
@@ -84,14 +64,11 @@ for row in data:
     bulk_data.append(op_dict)
     bulk_data.append(data_dict)
 
-#chunk bulks
-numchunks = len(bulk_data) / 100
-chunks = []
-for i in range(numchunks):
-    chunks.append(bulk_data[i*100:(i+1)*100])
-chunks.append(bulk_data[((numchunks+1)*100 + 1):len(bulk_data)-1])
-print("bulk indexing " + fname)
-print(str(len(bulk_data)) + " records")
+#chunk bulk
+chunks = [ bulk_data[i:i+500] for i in xrange(0, len(bulk_data), 500) ]
+    for j in range(len(chunks)):
+        if len(chunks[j]) > 0:
+            res = es.bulk(index = INDEX_NAME, body = chunks[j], refresh = True)
 for j in range(len(chunks)):
     if len(chunks[j]) > 0:
         res = es.bulk(index = INDEX_NAME, body = chunks[j], refresh = True)
