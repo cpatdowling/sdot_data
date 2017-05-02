@@ -1,5 +1,3 @@
-print("suspended")
-"""
 import sys
 import os
 import numpy as np
@@ -42,13 +40,13 @@ try:
     #add header to file in parking_data directory, I hate csv writer, too lazy
 
     d1 = datetime.datetime.strptime(dates[0], '%m%d%Y')
-            d2 = datetime.datetime.strptime(dates[1].rstrip(".csv"), '%m%d%Y')
+    d2 = datetime.datetime.strptime(dates[1].rstrip(".csv"), '%m%d%Y')
 
-            d1 = datetime.datetime.strftime(d1, '%Y%m%d')
-            d2 = datetime.datetime.strftime(d2, '%Y%m%d')
-            fname = d1 + "-" + d2 + ".csv"
+    d1 = datetime.datetime.strftime(d1, '%Y%m%d')
+    d2 = datetime.datetime.strftime(d2, '%Y%m%d')
+    fname = d1 + "-" + d2 + ".csv"
 
-            outfile = open("../data/parking_data/" + fname, 'w')
+    outfile = open("../data/parking_data/" + fname, 'w')
 
     header = ["DataId", "MeterCode", "TransactionId", "TransactionDateTime",
           "Amount", "UserNumber", "PaymentMean", "PaidDuration", "ElementKey",
@@ -132,4 +130,3 @@ except Exception as err:
     fail = failure("SDOT data local indexing failure")
     fail.send_message(str(err))
     sys.exit()
-"""
