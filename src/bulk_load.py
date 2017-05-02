@@ -24,7 +24,7 @@ INDEX_NAME = "sdotparking"
 TYPE_NAME = "transaction"
 ID_FIELD = "dataid"
 
-es_cred_file = open("/home/chase/.escreds", 'r'))
+es_cred_file = open("/home/chase/.escreds", 'r')
 user = es_cred_file.readline().strip()
 pswd = es_cred_file.readline().strip()
 
