@@ -28,7 +28,7 @@ es_cred_file = open("/home/chase/.escreds", 'r')
 user = es_cred_file.readline().strip()
 pswd = es_cred_file.readline().strip()
 
-es = Elasticsearch(hosts = [ES_HOST], http_auth=(user, paswd))
+es = Elasticsearch(hosts = [ES_HOST], http_auth=(user, pswd))
 
 
 datapath = "/home/chase/projects/sdot_data/data/parking_data"
