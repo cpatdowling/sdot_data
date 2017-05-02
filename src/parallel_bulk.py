@@ -6,7 +6,7 @@ datapath = "/home/chase/projects/sdot_data/data/parking_data"
 infiles = os.listdir(datapath)
 
 #first batch of parallel bulk input ended with 12202015
-last = datetime.datetime(year=2015, month=12, day=20)
+last = datetime.datetime(year=2011, month=12, day=31)
 last = last - datetime.timedelta(days=5)
 
 with open("parallel_bulk.sh", 'w') as f:
