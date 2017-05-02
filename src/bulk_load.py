@@ -66,9 +66,6 @@ for row in data:
 
 #chunk bulk
 chunks = [ bulk_data[i:i+500] for i in xrange(0, len(bulk_data), 500) ]
-    for j in range(len(chunks)):
-        if len(chunks[j]) > 0:
-            res = es.bulk(index = INDEX_NAME, body = chunks[j], refresh = True)
 for j in range(len(chunks)):
     if len(chunks[j]) > 0:
         res = es.bulk(index = INDEX_NAME, body = chunks[j], refresh = True)
