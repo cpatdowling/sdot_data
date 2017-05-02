@@ -4,11 +4,6 @@ import csv
 import sys
 from datetime import *
 
-ES_HOST = {"host": "localhost", "port": 9200}
-INDEX_NAME = "sdotparking"
-TYPE_NAME = "transaction"
-ID_FIELD = "dataid"
-
 headerconfig = {
         "dataid": {"type": "integer"},
         "metercode": {"type": "integer"},
@@ -24,8 +19,16 @@ headerconfig = {
         "vendor": {"type": "string"}
     }
 
+ES_HOST = {"host": "localhost", "port": 9200}
+INDEX_NAME = "sdotparking"
+TYPE_NAME = "transaction"
+ID_FIELD = "dataid"
 
-es = Elasticsearch(hosts = [ES_HOST])
+es_cred_file = open("/home/chase/.escreds", 'r'))
+user = es_cred_file.readline().strip()
+pswd = es_cred_file.readline().strip()
+
+es = Elasticsearch(hosts = [ES_HOST], http_auth=(user, paswd))
 
 
 datapath = "/home/chase/projects/sdot_data/data/parking_data"
