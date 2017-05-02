@@ -12,7 +12,7 @@ last = last - datetime.timedelta(days=5)
 with open("parallel_bulk.sh", 'w') as f:
     for fname in infiles:
         dt = fname[0:8]
-        dt = datetime.datetime.strptime(dt, '%m%d%Y')
+        dt = datetime.datetime.strptime(dt, '%Y%m%d')
         if dt > last:
             print(dt)
             f.write("python /home/chase/projects/sdot_data/src/bulk_load.py " + fname + "\n")
